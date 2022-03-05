@@ -9,3 +9,7 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj.settings')
 
 app = Celery('proj')
+
+app.config_from_object('django.conf:settings', namespace='CELERY') # setting up django setting.py as source for config
+
+app.autodiscover_tasks() # Task are in tasks.py file of an app and this will discover that task
